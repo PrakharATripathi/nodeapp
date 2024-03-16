@@ -2,13 +2,14 @@ const User = require('../models/user');
 const bcrypt = require("bcrypt");
 
 const setCookies = require('../utils/fetures');
+const { ErrorHandlerClass } = require('../middleware/error');
 // all async function rape in try and catch
 
 const registerUser = async (req, res, next) => {
    const { name, email, password } = req.body;
    const user = await User.findOne({ email });
    // if (user) return res.status(404).json({ success: false, message: "user already Exists" })
-   if (!userdata) return next(new ErrorHandlerClass('user already Exists', 404));
+   if (user) return next(new ErrorHandlerClass('user already Exists', 404));
 
    const hasPasswords = await bcrypt.hash(password, 10)
    const userdata = await User.create({ name, email, password: hasPasswords });
