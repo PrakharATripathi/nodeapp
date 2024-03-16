@@ -25,12 +25,12 @@ app.use("/user", router);
 app.use("/task",taskRoute); 
 
 
-app.get("/", (req, res) => {
-    res.send("object")
-})
+app.get('/', (req, res) => {
+    res.send('Welcome to your backend API!');
+});
 
 app.use(errorHandler)
 
-app.listen(process.env.PORT, () => {  
-    console.log("server run on 3000 port")
-})
+app.listen( process.env.PORT , () => {
+    console.log(`Server is running on port ${PORT}`);
+});

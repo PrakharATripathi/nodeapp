@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 
-
 const connectDB = () => {
     mongoose.connect(process.env.MONGO_URL, { dbName: "BackendApi" })
-        .then((c) => console.log(`database connect on ${c.connection.host}`))
-        .catch(() => console.log("error"))
-} 
+        .then(() => {
+            console.log(`Connected to MongoDB: ${mongoose.connection.host}`);
+        })
+        .catch((err) => {
+            console.error(`Error connecting to MongoDB: ${err.message}`);
+        });
+};
 
 module.exports = connectDB;
