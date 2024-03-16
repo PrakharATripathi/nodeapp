@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const connectDB = () => {
     mongoose.connect(process.env.MONGO_URL, { dbName: "BackendApi" })
-        .then(() => console.log("database connected "))
+        .then((c) => console.log(`database connect on ${c.connection.host}`))
         .catch(() => console.log("error"))
 
 } 
